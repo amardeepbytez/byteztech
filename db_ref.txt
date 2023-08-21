@@ -1,0 +1,100 @@
+1. Users Table
+Fields:
+
+user_id (Primary Key)
+username
+hashed_password
+email
+user_type (Admin/Customer)
+registration_date
+last_login_date
+phone
+address
+country
+
+2. Events Table
+Fields:
+
+event_id (Primary Key)
+admin_id (Foreign Key referencing user_id from Users Table)
+event_name
+event_description
+event_date
+venue_name
+location
+country
+event_status (Upcoming, Ongoing, Past)
+total_tickets
+tickets_sold
+ticket_price
+
+3. Ticket Categories Table
+Fields:
+
+category_id (Primary Key)
+category_name (e.g., VIP, Regular, Economy)
+category_description
+
+4. Tickets Table
+Fields:
+
+ticket_id (Primary Key)
+event_id (Foreign Key referencing event_id from Events Table)
+category_id (Foreign Key referencing category_id from Ticket Categories Table)
+user_id (Foreign Key referencing user_id from Users Table; if ticket is purchased)
+seat_number
+ticket_status (Available, Bought, Cancelled)
+
+5. Payment Transactions Table
+Fields:
+
+transaction_id (Primary Key)
+user_id (Foreign Key referencing user_id from Users Table)
+ticket_id (Foreign Key referencing ticket_id from Tickets Table)
+transaction_date
+transaction_amount
+payment_method
+transaction_status (Completed, Pending, Failed)
+
+6. Amenities Table
+Fields:
+
+amenity_id (Primary Key)
+event_id (Foreign Key referencing event_id from Events Table)
+amenity_name
+amenity_description
+
+7. Ticket Cancellation Table
+Fields:
+
+cancellation_id (Primary Key)
+ticket_id (Foreign Key referencing ticket_id from Tickets Table)
+user_id (Foreign Key referencing user_id from Users Table)
+cancellation_date
+refund_status
+refund_amount
+
+8. Reviews and Feedback Table
+Fields:
+
+review_id (Primary Key)
+event_id (Foreign Key referencing event_id from Events Table)
+user_id (Foreign Key referencing user_id from Users Table)
+rating
+feedback_text
+submission_date
+
+9. Event Country Table
+Fields:
+
+country_id (Primary Key)
+country_name
+
+10. Payment Management Table
+Fields:
+
+payment_id (Primary Key)
+transaction_id (Foreign Key referencing transaction_id from Payment Transactions Table)
+payment_status (Paid, Due, Overdue, Refunded)
+payment_date
+due_date (if applicable)
